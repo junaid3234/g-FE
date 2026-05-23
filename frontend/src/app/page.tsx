@@ -89,6 +89,118 @@ export default function HomePage() {
     <div className="bg-[var(--background)]">
       <Hero />
 
+      {/* ── Features ── */}
+      <section id="features" className="px-4 py-24 sm:px-6">
+        <div className="mx-auto max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-14 text-center"
+          >
+            <span className="mb-3 inline-block rounded-full border border-[var(--border)] bg-[var(--muted)] px-4 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--primary)]">
+              Capabilities
+            </span>
+            <h2 className="text-3xl font-extrabold tracking-tight text-[var(--foreground)] sm:text-4xl">
+              Enterprise-grade <span className="gradient-text">features</span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-[var(--muted-foreground)]">
+              Built for clinical workflows with the polish of a consumer product.
+            </p>
+          </motion.div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {features.map((f, i) => (
+              <motion.div
+                key={f.title}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+              >
+                <Card className="group h-full p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[color-mix(in_srgb,var(--primary)_12%,transparent)]">
+                  <div className={`mb-4 inline-flex rounded-xl p-2.5 ${f.bg}`}>
+                    <f.icon className={`h-6 w-6 ${f.color}`} />
+                  </div>
+                  <h3 className="font-semibold text-[var(--foreground)]">{f.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
+                    {f.desc}
+                  </p>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Stats ── */}
+      <section className="border-y border-[var(--border)] bg-[var(--muted)] px-4 py-16 sm:px-6">
+        <div className="mx-auto grid max-w-7xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map((s, i) => (
+            <motion.div
+              key={s.label}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              className="text-center"
+            >
+              <p className="text-4xl font-extrabold gradient-text">{s.value}</p>
+              <p className="mt-1 font-semibold text-[var(--foreground)]">{s.label}</p>
+              <p className="mt-0.5 text-xs text-[var(--muted-foreground)]">{s.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Workflow ── */}
+      <section id="workflow" className="px-4 py-24 sm:px-6">
+        <div className="mx-auto max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-14 text-center"
+          >
+            <span className="mb-3 inline-block rounded-full border border-[var(--border)] bg-[var(--muted)] px-4 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--primary)]">
+              Process
+            </span>
+            <h2 className="text-3xl font-extrabold tracking-tight text-[var(--foreground)] sm:text-4xl">
+              AI <span className="gradient-text">workflow</span>
+            </h2>
+          </motion.div>
+
+          <div className="relative grid gap-6 md:grid-cols-4">
+            {/* Connector line */}
+            <div className="absolute left-0 right-0 top-10 hidden h-px bg-gradient-to-r from-transparent via-[var(--border)] to-transparent md:block" />
+
+            {workflow.map((w, i) => (
+              <motion.div
+                key={w.step}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                className="glass-card relative p-6"
+              >
+                <span className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl gradient-brand text-sm font-bold text-white shadow-md">
+                  {w.step}
+                </span>
+                <h3 className="mt-2 font-semibold text-[var(--foreground)]">{w.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
+                  {w.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA ── */}
       <section className="px-4 py-24 sm:px-6">
         <motion.div
