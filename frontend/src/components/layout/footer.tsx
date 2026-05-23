@@ -33,7 +33,7 @@ export function Footer() {
                 <GitFork className="h-4 w-4" />
               </a>
               <a
-                href="https://jvxlabs.com"
+                href="https://jvx-labs.lovable.app"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="JVX Labs website"
@@ -131,7 +131,7 @@ export function Footer() {
             <Heart className="h-3.5 w-3.5 fill-rose-500 text-rose-500" />
             {" "}by{" "}
             <a
-              href="https://www.instagram.com/jvxlabs?igsh=NHlqeHIzbTRuZnUy"
+              href="https://jvx-labs.lovable.app"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-[var(--primary)] transition-opacity hover:opacity-80"
