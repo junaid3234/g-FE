@@ -20,12 +20,38 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
 const PIE_COLORS = ["#10b981", "#f59e0b", "#f97316", "#ef4444", "#64748b"];
 
 export default function AdminPage() {
   const [data, setData] = useState<AnalyticsOverview | null>(null);
   const [search, setSearch] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [exporting, setExporting] = useState(false);
+
+  const handleExportCsv = async () => {
+    setExporting(true);
+    try {
+      const res = await fetch(`${API_URL}/analytics/export`);
+      if (!res.ok) throw new Error(`Export failed: ${res.statusText}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      const disposition = res.headers.get("Content-Disposition") || "";
+      const match = disposition.match(/filename=([^;]+)/);
+      a.download = match ? match[1] : "gingiai-export.csv";
+      a.href = url;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Export failed");
+    } finally {
+      setExporting(false);
+    }
+  };
 
   useEffect(() => {
     api
@@ -78,14 +104,10 @@ export default function AdminPage() {
               Screening analytics &amp; patient management
             </p>
           </div>
-          <a
-            href={`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}/analytics/export`}
-          >
-            <Button variant="outline">
+          <Button variant="outline" onClick={handleExportCsv} disabled={exporting}>
               <Download className="h-4 w-4" />
-              Export CSV
+              {exporting ? "Exporting…" : "Export CSV"}
             </Button>
-          </a>
         </div>
 
         {/* Error banner */}
@@ -98,7 +120,7 @@ export default function AdminPage() {
 
         {/* Stat cards */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {statCards.map((s, i) => (
+          {statCards.map((s) => (
             <Card key={s.label} className="flex items-center gap-4">
               <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${s.bg}`}>
                 <s.icon className={`h-5 w-5 ${s.color}`} />
