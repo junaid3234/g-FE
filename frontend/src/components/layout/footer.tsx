@@ -33,7 +33,7 @@ export function Footer() {
                 <GitFork className="h-4 w-4" />
               </a>
               <a
-                href="https://jvxlabs.com"
+                href="https://jvx-labs.lovable.app"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="JVX Labs website"
