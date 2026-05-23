@@ -208,21 +208,25 @@ export default function HomePage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl gradient-brand p-12 text-center text-white shadow-2xl shadow-[color-mix(in_srgb,var(--primary)_30%,transparent)]"
+          className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--card)] p-12 text-center shadow-2xl shadow-[color-mix(in_srgb,var(--primary)_15%,transparent)]"
         >
-          {/* Decorative circles */}
-          <div className="pointer-events-none absolute -left-16 -top-16 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-16 -right-16 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+          {/* Decorative gradient blobs */}
+          <div className="pointer-events-none absolute -left-16 -top-16 h-64 w-64 rounded-full bg-teal-400/20 blur-3xl dark:bg-teal-500/10" />
+          <div className="pointer-events-none absolute -bottom-16 -right-16 h-64 w-64 rounded-full bg-blue-400/20 blur-3xl dark:bg-blue-500/10" />
 
-          <Users className="relative mx-auto mb-5 h-12 w-12 opacity-90" />
-          <h2 className="relative text-3xl font-extrabold">Ready to screen smarter?</h2>
-          <p className="relative mt-3 text-lg opacity-90">
+          <div className="relative mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl gradient-brand shadow-lg">
+            <Users className="h-7 w-7 text-white" />
+          </div>
+          <h2 className="relative text-3xl font-extrabold text-[var(--foreground)]">
+            Ready to screen <span className="gradient-text">smarter?</span>
+          </h2>
+          <p className="relative mt-3 text-lg text-[var(--muted-foreground)]">
             Start your AI-assisted gingivitis assessment in under 10 minutes.
           </p>
           <Link href="/screening" className="relative mt-8 inline-block">
             <Button
               size="lg"
-              className="group bg-white text-[var(--primary)] shadow-lg hover:bg-white/95 hover:shadow-xl"
+              className="group gradient-brand border-0 text-white shadow-lg hover:opacity-90 hover:shadow-xl"
             >
               Start Screening Now
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
