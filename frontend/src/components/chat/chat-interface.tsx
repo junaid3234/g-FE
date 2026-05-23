@@ -17,10 +17,9 @@ const SECTION_LABELS: Record<string, string> = {
   A: "Basic Information",
   B: "Oral Hygiene Practices",
   C: "Gingival Symptoms",
-  D: "Clinical Assessment",
 };
 
-const TOTAL_QUESTIONS = 28;
+const TOTAL_QUESTIONS = 25;
 
 export function ChatInterface() {
   const router = useRouter();
