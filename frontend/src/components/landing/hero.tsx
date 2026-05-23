@@ -8,7 +8,7 @@ import { AIOrb } from "@/components/shared/ai-orb";
 
 const TRUST_BADGES = [
   "83% screening accuracy",
-  "28 clinical questions",
+  "25 clinical questions",
   "HIPAA-style design",
 ];
 
